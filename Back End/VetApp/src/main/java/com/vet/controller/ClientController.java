@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vet.model.Client;
+import com.vet.model.Pet;
 import com.vet.service.ClientService;
 
 @RestController
@@ -27,38 +29,43 @@ public class ClientController {
 	}
 	
 	@GetMapping("/{id}")
-	public Client findClientById(@PathVariable int id) {
+	public Client findClientById(@PathVariable("id") int id) {
 		return cs.findById(id);
 	}
 	
 	@PostMapping("/new")
-	public String insert(Client c) {
+	public String addNewClient(@RequestBody Client c) {
 		cs.insert(c);
-		return "new client added";
+		return "New client added";
 	}
 	
 	@PutMapping("/update")
-	public String update(Client c) {
+	public String updateClient(@RequestBody Client c) {
 		cs.update(c);
-		return "client info updated";
+		return "Client info updated";
 	}
 	
 	@PutMapping("/updatebyid")
-	public String updateById(int id) {
+	public String updateClientById(@RequestBody int id) {
 		cs.updateById(id);
-		return "client info updated by their ID";
+		return "Client info updated by their ID";
 	}
 	
 	@DeleteMapping("/delete")
 	public String delete(Client c) {
 		cs.delete(c);
-		return "client info deleted";
+		return "Client info deleted";
 	}
 	
 	@DeleteMapping("/deletebyid")
 	public String deleteById(int id) {
 		cs.deleteById(id);
-		return "client deleted by ID";
+		return "Client deleted by ID";
+	}
+
+	@GetMapping("/bypet/{pet}")
+	public Client findByPet(@PathVariable("pet") Pet pet) {
+		return cs.findClientByPet(pet);
 	}
 
 }

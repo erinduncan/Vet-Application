@@ -5,19 +5,24 @@ import org.springframework.stereotype.Service;
 
 import com.vet.dao.ClientDao;
 import com.vet.model.Client;
+import com.vet.model.Pet;
 
 @Service
 public class ClientService {
 	
 	@Autowired
 	ClientDao cd;
+
+	public void setCd(ClientDao cd) {
+		this.cd = cd;
+	}
 	
 	public Iterable<Client> findAll() {
 		return cd.findAll();
 	}
 	
 	public Client findById(int id) {
-		return cd.findById(id).get();
+		return cd.findById(id);
 	}
 	
 	public void insert(Client c) {
@@ -30,7 +35,7 @@ public class ClientService {
 	
 	// update by ID in case we need it
 	public void updateById(int id) {
-		Client c = cd.findById(id).get();
+		Client c = cd.findById(id);
 		cd.save(c);
 	}
 	
@@ -40,8 +45,12 @@ public class ClientService {
 	
 	// delete by ID in case we need it
 	public void deleteById(int id) {
-		Client c = cd.findById(id).get();
+		Client c = cd.findById(id);
 		cd.delete(c);
+	}
+
+	public Client findClientByPet(Pet p) {
+		return cd.findByPet(p);
 	}
 
 }

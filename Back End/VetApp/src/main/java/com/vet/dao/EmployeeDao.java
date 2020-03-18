@@ -6,4 +6,6 @@ import com.vet.model.Employee;
 
 public interface EmployeeDao extends CrudRepository<Employee, Integer> {
 
+    Employee findById(int id);
+
 }
