@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vet.dao.ClientDao;
+import com.vet.dao.PetDao;
 import com.vet.model.Client;
 import com.vet.model.Pet;
 
@@ -12,6 +13,9 @@ public class ClientService {
 	
 	@Autowired
 	ClientDao cd;
+
+	@Autowired
+	PetDao pd;
 
 	public void setCd(ClientDao cd) {
 		this.cd = cd;
@@ -49,8 +53,9 @@ public class ClientService {
 		cd.delete(c);
 	}
 
-	public Client findClientByPet(Pet p) {
-		return cd.findByPet(p);
+	public Client findClientByPet(int id) {
+		Pet pet = pd.findById(id);
+		return cd.findByPet(pet);
 	}
 
 }

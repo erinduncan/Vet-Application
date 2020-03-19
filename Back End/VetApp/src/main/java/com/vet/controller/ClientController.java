@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vet.model.Client;
 import com.vet.model.Pet;
 import com.vet.service.ClientService;
+import com.vet.service.PetService;
 
 @RestController
 @RequestMapping(value = "/client")
@@ -22,6 +23,9 @@ public class ClientController {
 	
 	@Autowired
 	ClientService cs;
+
+	@Autowired
+	PetService ps;
 	
 	@GetMapping("/all")
 	public Iterable<Client> findAllClients() {
@@ -52,20 +56,20 @@ public class ClientController {
 	}
 	
 	@DeleteMapping("/delete")
-	public String delete(Client c) {
+	public String deleteClient(Client c) {
 		cs.delete(c);
 		return "Client info deleted";
 	}
 	
 	@DeleteMapping("/deletebyid")
-	public String deleteById(int id) {
+	public String deleteClientById(int id) {
 		cs.deleteById(id);
 		return "Client deleted by ID";
 	}
 
-	@GetMapping("/bypet/{pet}")
-	public Client findByPet(@PathVariable("pet") Pet pet) {
-		return cs.findClientByPet(pet);
+	@GetMapping("/bypet/{id}")
+	public Client findByPet(@PathVariable("id") int id) {
+		return cs.findClientByPet(id);
 	}
 
 }

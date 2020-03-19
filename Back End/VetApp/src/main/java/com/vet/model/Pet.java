@@ -1,29 +1,35 @@
 package com.vet.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table
 public class Pet {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
+	@Enumerated(EnumType.STRING)
 	private Animal species;
-	
+
 	private String name;
-	
+
 	private int age;
-	
-	@ManyToOne
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn
 	private Client owner;
-	
+
 	private String description;
 
 	public int getId() {
@@ -74,12 +80,33 @@ public class Pet {
 		this.description = description;
 	}
 
+	public Pet() {
+		super();
+	}
+
+	public Pet(int id, Animal species, String name, int age, Client owner, String description) {
+		super();
+		this.id = id;
+		this.species = species;
+		this.name = name;
+		this.age = age;
+		this.owner = owner;
+		this.description = description;
+	}
+
+	public Pet(Animal species, String name, int age, Client owner, String description) {
+		super();
+		this.species = species;
+		this.name = name;
+		this.age = age;
+		this.owner = owner;
+		this.description = description;
+	}
+
 	@Override
 	public String toString() {
 		return "Pet [id=" + id + ", species=" + species + ", name=" + name + ", age=" + age + ", owner=" + owner
 				+ ", description=" + description + "]";
 	}
-	
-	
 
 }

@@ -1,9 +1,13 @@
 package com.vet.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +29,9 @@ public class Client {
 	private String phoneNumber;
 
 	private String address;
+	
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	private Set<Pet> pet;
 
 	public int getId() {
 		return id;
@@ -84,7 +91,6 @@ public class Client {
 
 	public Client() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Client(int id, String firstName, String lastName, String email, String password, String phoneNumber,
