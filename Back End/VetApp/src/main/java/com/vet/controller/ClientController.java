@@ -12,55 +12,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vet.model.Client;
-import com.vet.model.Pet;
 import com.vet.service.ClientService;
-import com.vet.service.PetService;
 
 @RestController
 @RequestMapping(value = "/client")
 @CrossOrigin(origins = "http://localhost:3000")
 public class ClientController {
-	
-	@Autowired
-	ClientService cs;
+
+	// @Autowired
+	private ClientService cs;
 
 	@Autowired
-	PetService ps;
-	
+	public ClientController(ClientService cs) {
+		this.cs = cs;
+	}
+
 	@GetMapping("/all")
 	public Iterable<Client> findAllClients() {
 		return cs.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
 	public Client findClientById(@PathVariable("id") int id) {
 		return cs.findById(id);
 	}
-	
+
 	@PostMapping("/new")
 	public String addNewClient(@RequestBody Client c) {
 		cs.insert(c);
 		return "New client added";
 	}
-	
+
 	@PutMapping("/update")
 	public String updateClient(@RequestBody Client c) {
 		cs.update(c);
 		return "Client info updated";
 	}
-	
+
 	@PutMapping("/updatebyid")
 	public String updateClientById(@RequestBody int id) {
 		cs.updateById(id);
 		return "Client info updated by their ID";
 	}
-	
+
 	@DeleteMapping("/delete")
 	public String deleteClient(Client c) {
 		cs.delete(c);
 		return "Client info deleted";
 	}
-	
+
 	@DeleteMapping("/deletebyid")
 	public String deleteClientById(int id) {
 		cs.deleteById(id);

@@ -1,17 +1,38 @@
-import React from 'react';
-import { Router, Route } from 'react-router';
-import { history } from './utilites/history';
-import { PetTableComponent } from './components/pet-components/PetTableComponent';
+import React from "react";
+import "./VetConnect.css";
+import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { PetTableComponent } from "./components/pet-components/PetTableComponent";
+import LoginComponent from "./components/login-components/LoginContainer";
+import HomeComponent from "./components/home-components/HomeContainer";
+import NavbarComponent from "./components/NavbarComponent";
 
-
-function App() {
-  return (
-    <div className="mainPage">
-      <Router history={history}>
-        <Route path="/pet" component={PetTableComponent}/>
-      </Router>
-    </div>
-  );
+class AppComponent extends React.Component<any, any> {
+  render() {
+    if (this.props.loggedIn) {
+      return (
+        <div className="mainPage">
+          <Router>
+          <NavbarComponent />
+            <Switch>
+              <Route path="/pet" component={PetTableComponent} />
+              <Route path="/" component={HomeComponent} />
+            </Switch>
+          </Router>
+        </div>
+      );
+    } else {
+      return (
+        <div className="mainPage">
+          <Router>
+            <Switch>
+              <Route path="/" component={LoginComponent} />
+            </Switch>
+          </Router>
+        </div>
+      );
+    }
+  }
 }
 
-export default App;
+export default AppComponent;
