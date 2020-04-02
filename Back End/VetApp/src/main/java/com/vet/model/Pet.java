@@ -30,6 +30,8 @@ public class Pet {
 	@JoinColumn
 	private Client owner;
 
+	//TODO May need to change Client to int
+
 	private String description;
 
 	public int getId() {

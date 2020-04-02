@@ -1,5 +1,6 @@
 package com.vet.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,12 +21,13 @@ public class Employee {
 
 	private String lastName;
 
+	@Column(unique=true)
 	private String email;
 
 	private String password;
 
 	@Enumerated(EnumType.STRING)
-	private EmployeeType employeeType;
+	private EmployeeRole employeeRole;
 
 	private String phoneNumber;
 
@@ -69,12 +71,12 @@ public class Employee {
 		this.password = password;
 	}
 
-	public EmployeeType getEmployeeType() {
-		return employeeType;
+	public EmployeeRole getemployeeRole() {
+		return employeeRole;
 	}
 
-	public void setEmployeeType(EmployeeType employeeType) {
-		this.employeeType = employeeType;
+	public void setEmployeeRole(EmployeeRole employeeRole) {
+		this.employeeRole = employeeRole;
 	}
 
 	public String getPhoneNumber() {
@@ -89,7 +91,7 @@ public class Employee {
 		super();
 	}
 
-	public Employee(int id, String firstName, String lastName, String email, String password, EmployeeType employeeType,
+	public Employee(int id, String firstName, String lastName, String email, String password, EmployeeRole employeeRole,
 			String phoneNumber) {
 		super();
 		this.id = id;
@@ -97,14 +99,14 @@ public class Employee {
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.employeeType = employeeType;
+		this.employeeRole = employeeRole;
 		this.phoneNumber = phoneNumber;
 	}
 
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", employeeType=" + employeeType + ", phoneNumber=" + phoneNumber + "]";
+				+ ", password=" + password + ", employeeRole=" + employeeRole + ", phoneNumber=" + phoneNumber + "]";
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.vet.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import com.vet.model.Client;
 import com.vet.model.Pet;
 import com.vet.service.PetService;
@@ -20,26 +25,30 @@ import com.vet.service.PetService;
 @CrossOrigin(origins = "http://localhost:3000")
 public class PetController {
 	
+	private PetService ps;
+	
 	@Autowired
-	PetService ps;
+	public PetController(PetService ps) {
+		this.ps = ps;
+	}
 
-	@GetMapping("/all")
-	public Iterable<Pet> readAllPets() {
+	@GetMapping(value="/pets", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Pet> readAllPets() {
 		return ps.readAll();
 	}
 
-	@GetMapping("/{id}")
-	public Pet findPetById(@PathVariable("id") int id) {
+	@GetMapping(value = "/id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Pet findPetById(@PathVariable @RequestBody int id) {
 		return ps.findPetById(id);
 	}
 
-	@PostMapping("/new")
-	public Pet addNewPet(@RequestBody Pet p) {
-		return ps.insert(p);
+	@PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Pet addNewPet(@RequestBody @Valid Pet p) {
+		return ps.addPet(p);
 	}
 
-	@PutMapping("/update")
-	public Pet updatePet(@RequestBody Pet p) {
+	@PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Pet updatePet(@RequestBody @Valid Pet p) {
 		return ps.update(p);
 	}
 

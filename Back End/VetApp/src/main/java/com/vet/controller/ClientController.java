@@ -19,7 +19,6 @@ import com.vet.service.ClientService;
 @CrossOrigin(origins = "http://localhost:3000")
 public class ClientController {
 
-	// @Autowired
 	private ClientService cs;
 
 	@Autowired
@@ -39,7 +38,7 @@ public class ClientController {
 
 	@PostMapping("/new")
 	public String addNewClient(@RequestBody Client c) {
-		cs.insert(c);
+		cs.addClient(c);
 		return "New client added";
 	}
 

@@ -101,7 +101,6 @@ export class ClientComponent extends React.Component<IClientProps, any> {
     return (
       <Wrapper
         title="Clients"
-        elements={this.props.clients ? this.subHeader() : "Client name"}
       >
         <Card className="full-card">
           <div className="tblbox">
@@ -110,7 +109,7 @@ export class ClientComponent extends React.Component<IClientProps, any> {
               <tbody>
                 <tr>
                   <td>
-                    <b>Cliend Id:</b>
+                    <b>Client Id:</b>
                   </td>
                   <td>
                     <b>First Name:</b>
@@ -129,6 +128,7 @@ export class ClientComponent extends React.Component<IClientProps, any> {
                   this.mapClients()
                 ) : (
                   <tr>
+                    <td>No data available</td>
                     <td>No data available</td>
                     <td>No data available</td>
                     <td>No data available</td>

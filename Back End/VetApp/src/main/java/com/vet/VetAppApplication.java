@@ -5,12 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.vet.dao.PetDao;
 import com.vet.dao.ClientDao;
-import com.vet.model.Animal;
-import com.vet.model.Pet;
 import com.vet.model.Client;
-import com.vet.service.ClientService;
 
 @SpringBootApplication
 public class VetAppApplication {
@@ -29,12 +25,12 @@ public class VetAppApplication {
 		};
 	}
 
-	@Bean
-	CommandLineRunner petRunner(PetDao pd) {
-		return args -> {
-			ClientService cs = new ClientService();
-			pd.save(new Pet(Animal.DOG, "Midnight", 14, cs.findById(1), "He's my lil gramps"));
-		};
+	// @Bean
+	// CommandLineRunner petRunner(PetDao pd) {
+	// 	return args -> {
+	// 		ClientService cs = new ClientService();
+	// 		pd.save(new Pet(Animal.DOG, "Midnight", 14, cs.findById(1), "He's my lil gramps"));
+	// 	};
 
-	}
+	// }
 }
