@@ -2,6 +2,7 @@ package com.vet.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,6 +23,7 @@ public class Client {
 
 	private String lastName;
 
+	@Column(unique=true)
 	private String email;
 
 	private String password;
@@ -30,8 +32,8 @@ public class Client {
 
 	private String address;
 	
-	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-	private Set<Pet> pet;
+	// @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	// private Set<Pet> pet;
 
 	public int getId() {
 		return id;

@@ -1,15 +1,12 @@
 package com.vet.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+import javax.validation.Valid;
 
 import com.vet.model.Employee;
 import com.vet.service.EmployeeService;
@@ -18,27 +15,31 @@ import com.vet.service.EmployeeService;
 @RequestMapping(value = "/employee")
 @CrossOrigin(origins = "http://localhost:3000")
 public class EmployeeController {
-	
-	@Autowired
-	EmployeeService es;
 
-	@GetMapping("/all")
-	public Iterable<Employee> readAllEmployees() {
+	private EmployeeService es;
+
+	@Autowired
+	public EmployeeController(EmployeeService es) {
+		this.es = es;
+	}
+
+	@GetMapping(value="/employees", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Employee> getAllEmployees() {
 		return es.readAll();
 	}
 
-	@GetMapping("/{id}")
-	public Employee findEmployeeById(@PathVariable("id") int id) {
+	@GetMapping(value = "/id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Employee findEmployeeById(@PathVariable @RequestBody int id) {
 		return es.findEmployeeById(id);
 	}
 
-	@PostMapping("/new")
-	public Employee addNewEmployee(@RequestBody Employee e) {
-		return es.insert(e);
+	@PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Employee addNewEmployee(@RequestBody @Valid Employee e) {
+		return es.addEmployee(e);
 	}
 
-	@PutMapping("/update")
-	public Employee updateEmployee(@RequestBody Employee e) {
+	@PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Employee updateEmployee(@RequestBody @Valid Employee e) {
 		return es.update(e);
 	}
 
