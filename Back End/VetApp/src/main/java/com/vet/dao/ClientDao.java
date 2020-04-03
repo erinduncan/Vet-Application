@@ -1,17 +1,13 @@
 package com.vet.dao;
 
-
-
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.vet.model.Client;
-import com.vet.model.Pet;
 
 @Repository
-
 public interface ClientDao extends CrudRepository<Client, Integer> {
 
     Client findById(int id);
-    Client findByPet(Pet p);
+    // Client findByPet(Pet p);
 }

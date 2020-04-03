@@ -11,7 +11,7 @@ import EmployeeComponent from "./components/employee-components/EmployeeContaine
 
 class AppComponent extends React.Component<any, any> {
   render() {
-    // if (this.props.loggedIn) {
+    if (this.props.loggedIn) {
       return (
         <div className="mainPage">
           <Router>
@@ -25,18 +25,18 @@ class AppComponent extends React.Component<any, any> {
           </Router>
         </div>
       );
-    // }
-    // } else {
-    //   return (
-    //     <div className="mainPage">
-    //       <Router>
-    //         <Switch>
-    //           <Route path="/" component={LoginComponent} />
-    //         </Switch>
-    //       </Router>
-    //     </div>
-    //   );
-    // }
+    
+    } else {
+      return (
+        <div className="mainPage">
+          <Router>
+            <Switch>
+              <Route path="/" component={LoginComponent} />
+            </Switch>
+          </Router>
+        </div>
+      );
+    }
   }
 }
 

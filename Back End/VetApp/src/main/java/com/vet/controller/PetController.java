@@ -57,10 +57,10 @@ public class PetController {
 		return ps.updateById(id);
 	}
 
-	@GetMapping("/byowner/{owner}")
-	public Pet findByOwner(@PathVariable("owner") Client owner) {
-		return ps.findPetByOwner(owner);
-	}
+	// @GetMapping("/byowner/{owner}")
+	// public Pet findByOwner(@PathVariable("owner") Client owner) {
+	// 	return ps.findPetByOwner(owner);
+	// }
 
 	@DeleteMapping("/delete")
 	public void deletePet(Pet p) {

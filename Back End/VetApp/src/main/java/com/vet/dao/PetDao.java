@@ -10,6 +10,6 @@ import com.vet.model.Pet;
 public interface PetDao extends CrudRepository<Pet, Integer> {
 
     Pet findById(int id);
-    Pet findByOwner(Client c);
+    // Pet findByOwner(Client c);
 
 }

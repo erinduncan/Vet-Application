@@ -32,8 +32,8 @@ public class Client {
 
 	private String address;
 	
-	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-	private Set<Pet> pet;
+	// @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	// private Set<Pet> pet;
 
 	public int getId() {
 		return id;

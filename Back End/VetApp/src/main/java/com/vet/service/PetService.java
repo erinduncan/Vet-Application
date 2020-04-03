@@ -55,9 +55,9 @@ public class PetService {
 		pd.delete(p);
 	}
 
-	public Pet findPetByOwner(Client c) {
-		return pd.findByOwner(c);
-	}
+	// public Pet findPetByOwner(Client c) {
+	// 	return pd.findByOwner(c);
+	// }
 
 	public static <T> List<T> getListFromIterator(Iterable<T> iterable) {
 		List<T> list = new ArrayList<>();

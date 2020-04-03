@@ -66,9 +66,9 @@ public class ClientController {
 		return "Client deleted by ID";
 	}
 
-	@GetMapping("/bypet/{id}")
-	public Client findByPet(@PathVariable("id") int id) {
-		return cs.findClientByPet(id);
-	}
+	// @GetMapping("/bypet/{id}")
+	// public Client findByPet(@PathVariable("id") int id) {
+	// 	return cs.findClientByPet(id);
+	// }
 
 }

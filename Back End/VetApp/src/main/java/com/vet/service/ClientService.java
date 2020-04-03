@@ -59,10 +59,10 @@ public class ClientService {
 		cd.delete(c);
 	}
 
-	public Client findClientByPet(int id) {
-		Pet pet = pd.findById(id);
-		return cd.findByPet(pet);
-	}
+	// public Client findClientByPet(int id) {
+	// 	Pet pet = pd.findById(id);
+	// 	return cd.findByPet(pet);
+	// }
 
 	public static <T> List<T> getListFromIterator(Iterable<T> iterable) {
 		List<T> list = new ArrayList<>();
