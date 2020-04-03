@@ -7,6 +7,7 @@ import HomeComponent from "./components/home-components/HomeContainer";
 import NavbarComponent from "./components/NavbarComponent";
 import { PetComponent } from "./components/pet-components/PetComponent";
 import ClientComponent from "./components/client-components/ClientContainer";
+import EmployeeComponent from "./components/employee-components/EmployeeContainer";
 
 class AppComponent extends React.Component<any, any> {
   render() {
@@ -18,6 +19,7 @@ class AppComponent extends React.Component<any, any> {
             <Switch>
               <Route path="/pets" component={PetComponent} />
               <Route path="/clients" component={ClientComponent} />
+              <Route path="/employees" component={EmployeeComponent}/>
               <Route path="/" component={HomeComponent} />
             </Switch>
           </Router>

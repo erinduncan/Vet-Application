@@ -5,6 +5,14 @@ export const getClients = () => {
   return axiosConfig.get("client/all");
 };
 
+export const getEmployees = () => {
+  return axiosConfig.get("employee/all");
+};
+
+export const employee = Axios.create({
+  baseURL: ""
+});
+
 export const client = Axios.create({
   baseURL: "https://api.myjson.com/bins/6g7xw"
 });

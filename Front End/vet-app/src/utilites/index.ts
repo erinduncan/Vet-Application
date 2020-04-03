@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { userState } from "../reducers/login-reducer";
 import { clientReducer } from "../reducers/client-reducer";
+import { employeeReducer } from "../reducers/employee-reducer";
 
 export interface IUserState {
   currentUser: any;
@@ -20,12 +21,21 @@ export interface IClientState {
   id: number
 }
 
+export interface IEmployeeState {
+  employees: any,
+  employee: any,
+  employeeMessage: string,
+  id: number
+}
+
 export interface IState {
   userState: IUserState;
   clientState: IClientState;
+  employeeState: IEmployeeState;
 }
 
 export const state = combineReducers<IState>({
   userState: userState,
-  clientState: clientReducer
+  clientState: clientReducer,
+  employeeState: employeeReducer
 });
