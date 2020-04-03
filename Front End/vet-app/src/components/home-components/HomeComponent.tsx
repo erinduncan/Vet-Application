@@ -20,7 +20,7 @@ export class HomeComponent extends React.Component<any, any> {
 
   componentDidUpdate() {
     if (this.props.clients && this.propsUpdated === false) {
-      if (this.props.currentUser.employeeType === "manager") {
+      if (this.props.currentUser.employeeRole === "manager") {
         this.setState({
           ...this.state,
           currentUser: this.props.clients
@@ -38,7 +38,7 @@ export class HomeComponent extends React.Component<any, any> {
 
   mapData = () => {
     if (this.state.currentUser !== null) {
-      if (this.props.currentUser.employeeType === "manager") {
+      if (this.props.currentUser.employeeRole === "manager") {
         return this.state.currentUser.map((client: any) => {
           return this.managerTable(client);
         });
@@ -90,7 +90,7 @@ export class HomeComponent extends React.Component<any, any> {
           <div className="tblbox">
             <div className="tblhdr">
               {this.state.currentUser
-                ? this.props.currentUser.username + "'s resources"
+                ? this.props.currentUser.firstName + "'s resources"
                 : " "}
             </div>
             <table>

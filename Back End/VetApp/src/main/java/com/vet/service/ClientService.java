@@ -10,7 +10,7 @@ import java.util.List;
 import com.vet.dao.ClientDao;
 import com.vet.dao.PetDao;
 import com.vet.model.Client;
-import com.vet.model.Pet;
+// import com.vet.model.Pet;
 
 @Service
 @Transactional

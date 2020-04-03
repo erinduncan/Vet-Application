@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { userState } from "../reducers/login-reducer";
+import { userReducer } from "../reducers/login-reducer";
 import { clientReducer } from "../reducers/client-reducer";
 import { employeeReducer } from "../reducers/employee-reducer";
 
@@ -35,7 +35,7 @@ export interface IState {
 }
 
 export const state = combineReducers<IState>({
-  userState: userState,
+  userState: userReducer,
   clientState: clientReducer,
   employeeState: employeeReducer
 });

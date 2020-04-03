@@ -87,12 +87,16 @@ export class ClientComponent extends React.Component<IClientProps, any> {
     return (
       <tr>
         <td>
-          <Link to={`/pet/${client["id"]}`}>
+          <Link to={`/client/${client["id"]}`}>
             <span id={client.id} onClick={this.props.clients.id}>
               {client.id}
             </span>
           </Link>
         </td>
+        <td>{client.firstName}</td>
+        <td>{client.lastName}</td>
+        <td>{client.email}</td>
+        <td>{client.phoneNumber}</td>
       </tr>
     );
   };

@@ -6,7 +6,7 @@ export const getClients = () => {
 };
 
 export const getEmployees = () => {
-  return axiosConfig.get("employee/all");
+  return axiosConfig.get("employee/employees");
 };
 
 export const employee = Axios.create({
@@ -19,10 +19,11 @@ export const client = Axios.create({
 
 export const login = Axios.create({
   baseURL: "https://api.myjson.com/bins/hr2e4"
+  // baseURL: "https://my-json-server.vetconnect.com/erinduncan/Vet-Application/blob/erin/posts"
 });
 
 export const userLogin = () => {
-  return login.get("");
+  return axiosConfig.get("client/all");
 };
 
 export const allData = async () => {

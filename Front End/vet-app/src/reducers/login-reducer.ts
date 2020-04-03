@@ -7,14 +7,14 @@ const initialState: IUserState = {
   loginMessage: ""
 };
 
-export const userState = (state = initialState, action: any) => {
+export const userReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case loginTypes.SUCCESSFULL_LOGIN:
+    case loginTypes.SUCCESSFUL_LOGIN:
       return {
         ...state,
         currentUser: action.payload.user,
         loggedIn: true,
-        loginMessage: "Login Successfull. Proceeding ...."
+        loginMessage: "Login Successful."
       };
 
     case loginTypes.FAILED_LOGIN:

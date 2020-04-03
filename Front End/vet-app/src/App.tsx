@@ -17,9 +17,9 @@ class AppComponent extends React.Component<any, any> {
           <Router>
           <NavbarComponent />
             <Switch>
-              <Route path="/pets" component={PetComponent} />
               <Route path="/clients" component={ClientComponent} />
               <Route path="/employees" component={EmployeeComponent}/>
+              <Route path="/pets" component={PetComponent} />
               <Route path="/" component={HomeComponent} />
             </Switch>
           </Router>
@@ -39,5 +39,6 @@ class AppComponent extends React.Component<any, any> {
     }
   }
 }
+
 
 export default AppComponent;

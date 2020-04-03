@@ -16,7 +16,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.vet.model.Client;
+// import com.vet.model.Client;
 import com.vet.model.Pet;
 import com.vet.service.PetService;
 

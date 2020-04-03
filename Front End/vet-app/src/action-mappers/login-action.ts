@@ -1,7 +1,7 @@
 import { userLogin } from "../utilites/api";
 
 export const loginTypes = {
-    SUCCESSFULL_LOGIN: 'SUCCESSFULLY_LOGGED_IN',
+    SUCCESSFUL_LOGIN: 'SUCCESSFULLY_LOGGED_IN',
     FAILED_LOGIN: 'FAILED_TO_LOGIN'
 }
 
@@ -17,7 +17,7 @@ export const login = (email:string, password:string) => (dispatch:any) => {
                 console.log(currentUser);
                 
                 dispatch({
-                    type: loginTypes.SUCCESSFULL_LOGIN,
+                    type: loginTypes.SUCCESSFUL_LOGIN,
                     payload: {
                         user: currentUser
                     }
