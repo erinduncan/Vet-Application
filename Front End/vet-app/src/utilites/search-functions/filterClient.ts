@@ -3,6 +3,7 @@ export const filterClient = (mainData:any, searchTerm: any) => {
         let filteredResources:any = [];
         let clients = mainData;
         if (searchTerm.length > 0) {
+            // eslint-disable-next-line
             clients.filter((client:any) => {
                 if (`${client["firstName"]} ${client["lastName"]}`.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
                     filteredResources.push(client);

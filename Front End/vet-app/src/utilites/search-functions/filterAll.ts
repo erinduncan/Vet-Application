@@ -12,8 +12,9 @@ export const filterAll = (mainData: any, searchTerm: any) => {
             .indexOf(searchTerm.toLowerCase()) !== -1
         );
       });
-
+// eslint-disable-next-line
       client.filter(client => {
+        
         if (
           client["firstName"]
             .toLowerCase()
@@ -24,7 +25,7 @@ export const filterAll = (mainData: any, searchTerm: any) => {
           filteredResources.push(client);
         }
       });
-
+// eslint-disable-next-line
       pet.filter((pet: any) => {
         if (
           pet["name"].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1

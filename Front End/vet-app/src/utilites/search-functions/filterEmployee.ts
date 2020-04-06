@@ -3,6 +3,7 @@ export const filterEmployee = (mainData: any, searchTerm: any) => {
     let filteredResources: any = [];
     let employees = mainData;
     if (searchTerm.length > 0) {
+      // eslint-disable-next-line
       employees.filter((employee: any) => {
         if (
           `${employee["firstName"]} ${employee["lastName"]}`

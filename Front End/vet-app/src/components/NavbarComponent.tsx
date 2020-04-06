@@ -22,19 +22,13 @@ export default function NavbarComponent() {
       </div>
       <div className="side-nav">
         <Link to="/pets">
-          <a>
             <div className="navitem">Pets</div>
-          </a>
         </Link>
         <Link to="/clients">
-          <a>
             <div className="navitem">Clients</div>
-          </a>
         </Link>
         <Link to="/employees">
-          <a>
             <div className="navitem">Employees</div>
-          </a>
         </Link>
       </div>
     </>
