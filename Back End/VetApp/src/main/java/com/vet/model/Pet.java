@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table
 public class Pet {
@@ -26,11 +28,10 @@ public class Pet {
 
 	private int age;
 
-	// @ManyToOne(fetch = FetchType.LAZY)
-	// @JoinColumn
-	// private Client owner;
-
-	//TODO May need to change Client to int
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Client owner;
 
 	private String description;
 
@@ -66,13 +67,13 @@ public class Pet {
 		this.age = age;
 	}
 
-	// public Client getOwner() {
-	// 	return owner;
-	// }
+	public Client getOwner() {
+		return owner;
+	}
 
-	// public void setOwner(Client owner) {
-	// 	this.owner = owner;
-	// }
+	public void setOwner(Client owner) {
+		this.owner = owner;
+	}
 
 	public String getDescription() {
 		return description;
@@ -92,7 +93,7 @@ public class Pet {
 		this.species = species;
 		this.name = name;
 		this.age = age;
-		// this.owner = owner;
+		this.owner = owner;
 		this.description = description;
 	}
 
@@ -101,7 +102,7 @@ public class Pet {
 		this.species = species;
 		this.name = name;
 		this.age = age;
-		// this.owner = owner;
+		this.owner = owner;
 		this.description = description;
 	}
 

@@ -1,16 +1,13 @@
 export const filterPet = (mainData: any, searchTerm: any) => {
   if (mainData !== null) {
     let filteredResources: any = [];
-    let pet = mainData;
-    console.log(pet);
+    let pets = mainData;
     if (searchTerm.length > 0) {
-      pet.filter((pet: any) => {
+      pets.filter((pet: any) => {
         if (
-          `${pet["name"]}`.toLowerCase().indexOf(searchTerm.toLowerCase()) !==
-          -1
+          pet["name"].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
         ) {
           filteredResources.push(pet);
-          console.log(pet);
         }
       });
     } else {

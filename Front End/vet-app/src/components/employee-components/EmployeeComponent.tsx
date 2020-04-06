@@ -10,7 +10,6 @@ interface IEmployeeProps {
   employeesMessage: string;
   id: number;
   getAllEmployees: () => void;
-  updateId: (id: number) => void;
 }
 
 export class EmployeeComponent extends React.Component<IEmployeeProps, any> {
@@ -43,13 +42,13 @@ export class EmployeeComponent extends React.Component<IEmployeeProps, any> {
     });
   };
 
-  subHeader = () => {
+  searchBar = () => {
     return (
       <>
         Employee Filter: &nbsp;
         <input
           type="text"
-          placeholder="Enter employee's name or employee's role"
+          placeholder="Enter employee's name"
           onChange={this.onSearchChange}
         />
         &nbsp; Sort:
@@ -84,9 +83,11 @@ export class EmployeeComponent extends React.Component<IEmployeeProps, any> {
     );
   };
 
+  count = 0;
+
   makeTable = (employee: any) => {
     return (
-      <tr>
+      <tr key={this.count++}>
         <td>
           <Link to={`/employee/${employee["id"]}`}>
             <span id={employee.id} onClick={this.props.employees.id}>
@@ -97,7 +98,7 @@ export class EmployeeComponent extends React.Component<IEmployeeProps, any> {
         <td>{employee.firstName}</td>
         <td>{employee.lastName}</td>
         <td>{employee.email}</td>
-        <td>{employee.role}</td>
+        <td>{employee.employeeRole}</td>
         <td>{employee.phoneNumber}</td>
       </tr>
     );
@@ -105,7 +106,7 @@ export class EmployeeComponent extends React.Component<IEmployeeProps, any> {
 
   render() {
     return (
-      <Wrapper title="Employees">
+      <Wrapper title="Employees" elements={this.searchBar()}>
         <Card className="full-card">
           <div className="tblbox">
             <div className="tblhdr">Employees</div>

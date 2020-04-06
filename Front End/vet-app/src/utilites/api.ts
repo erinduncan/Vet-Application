@@ -9,6 +9,10 @@ export const getEmployees = () => {
   return axiosConfig.get("employee/employees");
 };
 
+export const getPets = () => {
+  return axiosConfig.get("pet/pets");
+}
+
 export const employee = Axios.create({
   baseURL: ""
 });
@@ -23,7 +27,7 @@ export const login = Axios.create({
 });
 
 export const userLogin = () => {
-  return axiosConfig.get("client/all");
+  return axiosConfig.get("employee/employees");
 };
 
 export const allData = async () => {

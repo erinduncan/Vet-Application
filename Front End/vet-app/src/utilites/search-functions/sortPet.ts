@@ -4,6 +4,7 @@ export const sortPet = (sortType: any, element: any) => {
       if (a.name < b.name) {
         return 1;
       }
+
       if (a.name > b.name) {
         return -1;
       }

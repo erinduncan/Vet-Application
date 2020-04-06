@@ -32,7 +32,7 @@ public class PetController {
 		this.ps = ps;
 	}
 
-	@GetMapping(value="/pets", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value= "/pets", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Pet> readAllPets() {
 		return ps.readAll();
 	}

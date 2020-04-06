@@ -1,102 +1,53 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Wrapper from "../../utilites/Wrapper";
+import Card from "@material-ui/core/Card";
+import { Link } from "react-router-dom";
 import { sortPet } from "../../utilites/search-functions/sortPet";
 import { filterPet } from "../../utilites/search-functions/filterPet";
-import Card from "@material-ui/core/Card";
 
-export class PetComponent extends React.Component<any, any> {
+interface IPetProps {
+  pets: any;
+  petsMessage: string;
+  id: number;
+  getAllPets: () => void;
+}
+
+export class PetComponent extends React.Component<IPetProps, any> {
   constructor(props: any) {
     super(props);
     this.state = {
       searchTerm: "",
-      sortType: "ascending"
+      sortType: "ascending",
     };
   }
 
-  count = 0;
-
-  async componentDidMount() {
-    // this.resources = await this.gatherData();
-    // this.id = this.props.match.params.id;
-    // this.setClient();
-    await this.gatherData;
-  }
-
-  //   setClient = () => {
-  //     if (this.resources.client) {
-  //       this.resources.client.map((client: any) => {
-  //         if (client["clientId"] === this.id) {
-  //           if (
-  //             this.state.client.length === 0 ||
-  //             this.state.client.clientId !== this.id
-  //           ) {
-  //             this.setState({
-  //               client: client
-  //             });
-  //           }
-  //         }
-  //       });
-  //     }
-  //   };
-
-  gatherData = async () => {
-    if (this.props.clients === null) {
-      await this.props.getAllClients();
+  componentDidMount = () => {
+    if (this.props.pets === null) {
+      this.props.getAllPets();
     }
-  };
-
-  //   componentDidUpdate() {
-  //       this.id = this.props.match.params.id;
-  //       this.setClient();
-  //   }
-
-  //   gatherData = async () => {
-  //       let apiData = await allData();
-  //       return apiData;
-  //   }
-
-  mapPets = () => {
-    if (this.state.searchTerm.length < 1) {
-      let pets = this.state.client.pets.map((pet: any) => pet);
-      return sortPet(this.state.sortType, pets).map((pet: any) =>
-        this.makeTable(pet)
-      );
-    }
-    if (filterPet(this.state.client, this.state.searchTerm).length === 0) {
-      return <h4>No pet found.</h4>;
-    }
-    let filteredPets = filterPet(this.state.client, this.state.searchTerm).map(
-      (pet: any) => pet
-    );
-    return sortPet(this.state.sortType, filteredPets).map((pet: any) =>
-      this.makeTable(pet)
-    );
   };
 
   onSearchChange = (e: any) => {
     this.setState({
       ...this.state,
-      searchTerm: e.target.value
+      searchTerm: e.target.value,
     });
   };
 
   sortChanger = (e: any) => {
     this.setState({
       ...this.state,
-      sortType: e.target.value
+      sortType: e.target.value,
     });
   };
 
-  subHeader = () => {
+  searchBar = () => {
     return (
       <>
-        {this.props.clients[0].clientId}
-        &nbsp;
+        Pet Filter: &nbsp;
         <input
-          data-test="search"
           type="text"
-          placeholder="Type client name or pet name"
+          placeholder="Type pet's name"
           onChange={this.onSearchChange}
         />
         &nbsp; Sort:
@@ -110,19 +61,44 @@ export class PetComponent extends React.Component<any, any> {
     );
   };
 
+  mapPets = () => {
+    if (this.state.searchTerm.length < 1) {
+      let pets = this.props.pets.map((pet: any) => pet);
+      return sortPet(this.state.sortType, pets).map((pet: any) =>
+        this.makeTable(pet)
+      );
+    }
+
+    if (filterPet(this.props.pets, this.state.searchTerm).length === 0) {
+      return "No pet found.";
+    }
+
+    let pets = filterPet(this.props.pets, this.state.searchTerm).map(
+      (pet: any) => pet
+    );
+
+    return sortPet(this.state.sortType, pets).map((pet: any) =>
+      this.makeTable(pet)
+    );
+  };
+
+  count = 0;
+
   makeTable = (pet: any) => {
     return (
-      <tr key={`${pet.name}${this.count++}`}>
+      <tr key={this.count++}>
         <td>
-          <Link to={`/pets/${pet.name}`}>
-            <span className="colour-me">{pet.name}</span>
+          <Link to={`/pet/${pet["id"]}`}>
+            <span id={pet.id} onClick={this.props.pets.id}>
+              {pet.id}
+            </span>
           </Link>
         </td>
+        <td>{pet.species}</td>
+        <td>{pet.name}</td>
+        <td>{pet.age}</td>
         <td>
-          
-        </td>
-        <td>
-          
+          <Link to={`/client/${["id"]}`}>{pet.owner.id}</Link>
         </td>
       </tr>
     );
@@ -131,9 +107,7 @@ export class PetComponent extends React.Component<any, any> {
   render() {
     return (
       <>
-        <Wrapper
-          title="Pets"
-        >
+        <Wrapper title="Pets" elements={this.searchBar()}>
           <Card className="full-card">
             <div className="tblbox">
               <div className="tblhdr">Pets</div>
@@ -141,19 +115,27 @@ export class PetComponent extends React.Component<any, any> {
                 <tbody>
                   <tr>
                     <td>
-                      <b>Pet Name:</b>
+                      <b>Pet Id:</b>
                     </td>
                     <td>
                       <b>Species:</b>
                     </td>
                     <td>
+                      <b>Pet Name:</b>
+                    </td>
+                    <td>
+                      <b>Pet Age:</b>
+                    </td>
+                    <td>
                       <b>Owner:</b>
                     </td>
                   </tr>
-                  {this.state.client ? (
+                  {this.props.pets ? (
                     this.mapPets()
                   ) : (
                     <tr>
+                      <td>No data available</td>
+                      <td>No data available</td>
                       <td>No data available</td>
                       <td>No data available</td>
                       <td>No data available</td>
@@ -168,3 +150,5 @@ export class PetComponent extends React.Component<any, any> {
     );
   }
 }
+
+export default PetComponent;

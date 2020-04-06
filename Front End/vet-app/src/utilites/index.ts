@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import { userReducer } from "../reducers/login-reducer";
 import { clientReducer } from "../reducers/client-reducer";
 import { employeeReducer } from "../reducers/employee-reducer";
+import { petReducer } from "../reducers/pet-reducer";
 
 export interface IUserState {
   currentUser: any;
@@ -21,6 +22,13 @@ export interface IClientState {
   id: number
 }
 
+export interface IPetState {
+  pets: any,
+  pet: any,
+  petMessage: string,
+  id: number
+}
+
 export interface IEmployeeState {
   employees: any,
   employee: any,
@@ -32,10 +40,12 @@ export interface IState {
   userState: IUserState;
   clientState: IClientState;
   employeeState: IEmployeeState;
+  petState: IPetState;
 }
 
 export const state = combineReducers<IState>({
   userState: userReducer,
   clientState: clientReducer,
-  employeeState: employeeReducer
+  employeeState: employeeReducer,
+  petState: petReducer
 });

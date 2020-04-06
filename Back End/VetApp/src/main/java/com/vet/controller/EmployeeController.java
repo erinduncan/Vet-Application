@@ -23,7 +23,7 @@ public class EmployeeController {
 		this.es = es;
 	}
 
-	@GetMapping(value="/employees", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping("/employees")
 	public List<Employee> getAllEmployees() {
 		return es.readAll();
 	}

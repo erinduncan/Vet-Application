@@ -1,6 +1,7 @@
 package com.vet.model;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +34,7 @@ public class Client {
 	private String address;
 	
 	// @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-	// private Set<Pet> pet;
+	// private List<Pet> pet = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -91,6 +92,8 @@ public class Client {
 		this.address = address;
 	}
 
+	
+
 	public Client() {
 		super();
 	}
@@ -123,5 +126,13 @@ public class Client {
 		return "Client [id=" + id + ", email=" + email + ", password=" + password + ", phoneNumber=" + phoneNumber
 				+ ", address=" + address + "]";
 	}
+
+	// public List<Pet> getPet() {
+	// 	return pet;
+	// }
+
+	// public void setPet(List<Pet> pet) {
+	// 	this.pet = pet;
+	// }
 
 }

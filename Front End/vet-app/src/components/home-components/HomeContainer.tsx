@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { IState } from "../../utilites/index";
 import { HomeComponent } from "./HomeComponent";
-import { getAllClients } from "../../action-mappers/client-action"
+import { getAllEmployees } from "../../action-mappers/employee-action"
 
 const mapStateToProps = (state: IState) => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = (state: IState) => {
 };
 
 const mapDispatchToProps = {
-  getAllClients
+  getAllEmployees
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeComponent);

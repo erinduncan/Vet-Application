@@ -14,13 +14,13 @@ export class HomeComponent extends React.Component<any, any> {
   propsUpdated: boolean = false;
 
   componentDidMount() {
-    this.props.getAllClients();
+    this.props.getAllEmployees();
     console.log(this.props.currentUser);
   }
 
   componentDidUpdate() {
     if (this.props.clients && this.propsUpdated === false) {
-      if (this.props.currentUser.employeeRole === "manager") {
+      if (this.props.currentUser.employeeRole === "MANAGER") {
         this.setState({
           ...this.state,
           currentUser: this.props.clients
@@ -38,7 +38,7 @@ export class HomeComponent extends React.Component<any, any> {
 
   mapData = () => {
     if (this.state.currentUser !== null) {
-      if (this.props.currentUser.employeeRole === "manager") {
+      if (this.props.currentUser.employeeRole === "MANAGER") {
         return this.state.currentUser.map((client: any) => {
           return this.managerTable(client);
         });
@@ -46,7 +46,7 @@ export class HomeComponent extends React.Component<any, any> {
         return (
           <tr>
             <td>
-              <span className="TBD">{this.state.currentUser.name}</span>
+              <span className="TBD">{this.state.currentUser.firstName}</span>
             </td>
             <td>
               {this.state.currentUser.vet.firstName}{" "}

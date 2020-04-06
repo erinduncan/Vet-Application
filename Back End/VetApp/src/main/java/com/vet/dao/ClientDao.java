@@ -9,5 +9,4 @@ import com.vet.model.Client;
 public interface ClientDao extends CrudRepository<Client, Integer> {
 
     Client findById(int id);
-    // Client findByPet(Pet p);
 }

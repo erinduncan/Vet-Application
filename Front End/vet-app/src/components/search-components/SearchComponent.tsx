@@ -53,12 +53,12 @@ export class SearchComponent extends React.Component<any, any> {
         </div>
       );
     } else if (
-      resource["amenities"] === undefined &&
-      resource["firstName"] === undefined
+      resource["pets"] === undefined &&
+      resource["name"] === undefined
     ) {
       return (
-        <div className="res" key={`${resource["name"]}${resource["id"]}`}>
-          <Link to={`/building/${resource["name"]}`}>{resource["name"]}</Link>
+        <div className="res" key={`${resource["id"]}${resource["id"]}`}>
+          <Link to={`/client/${resource["lasName"]}`}>{resource["lastName"]}</Link>
         </div>
       );
     }
@@ -70,7 +70,7 @@ export class SearchComponent extends React.Component<any, any> {
         <b>Search: </b>
         <input
           onChange={this.onSearchChange}
-          placeholder="Search for resource"
+          placeholder="Search"
           id="search-box"
           type="text"
         />

@@ -2,11 +2,12 @@ import React from "react";
 import Wrapper from "../../utilites/Wrapper";
 import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
-import { sortClient } from '../../utilites/search-functions/sortClient'
+import { sortClient } from "../../utilites/search-functions/sortClient";
 import { filterClient } from "../../utilites/search-functions/filterClient";
 
 interface IClientProps {
   clients: any;
+  clientsMessage: string;
   id: number;
   getAllClients: () => void;
 }
@@ -16,7 +17,7 @@ export class ClientComponent extends React.Component<IClientProps, any> {
     super(props);
     this.state = {
       searchTerm: "",
-      sortType: "ascending"
+      sortType: "ascending",
     };
   }
 
@@ -29,24 +30,24 @@ export class ClientComponent extends React.Component<IClientProps, any> {
   onSearchChange = (e: any) => {
     this.setState({
       ...this.state,
-      searchTerm: e.target.value
+      searchTerm: e.target.value,
     });
   };
 
   sortChanger = (e: any) => {
     this.setState({
       ...this.state,
-      sortType: e.target.value
+      sortType: e.target.value,
     });
   };
 
-  subHeader = () => {
+  searchBar = () => {
     return (
       <>
         Client Filter: &nbsp;
         <input
           type="text"
-          placeholder="Enter client's name or pet's name"
+          placeholder="Enter client's name"
           onChange={this.onSearchChange}
         />
         &nbsp; Sort:
@@ -63,29 +64,29 @@ export class ClientComponent extends React.Component<IClientProps, any> {
   mapClients = () => {
     if (this.state.searchTerm.length < 1) {
       let clients = this.props.clients.map((client: any) => client);
-      return sortClient(
-        this.state.sortType,
-        clients
-      ).map((client: any) => this.makeTable(client));
+      return sortClient(this.state.sortType, clients).map((client: any) =>
+        this.makeTable(client)
+      );
     }
-    if (
-      filterClient(this.props.clients, this.state.searchTerm).length ===
-      0
-    ) {
+
+    if (filterClient(this.props.clients, this.state.searchTerm).length === 0) {
       return "No client found!";
     }
-    let clients = filterClient(
-      this.props.clients,
-      this.state.searchTerm
-    ).map((client: any) => client);
+
+    let clients = filterClient(this.props.clients, this.state.searchTerm).map(
+      (client: any) => client
+    );
+
     return sortClient(this.state.sortType, clients).map((client: any) =>
       this.makeTable(client)
     );
   };
 
+  count = 0;
+
   makeTable = (client: any) => {
     return (
-      <tr>
+      <tr key={this.count++}>
         <td>
           <Link to={`/client/${client["id"]}`}>
             <span id={client.id} onClick={this.props.clients.id}>
@@ -103,9 +104,7 @@ export class ClientComponent extends React.Component<IClientProps, any> {
 
   render() {
     return (
-      <Wrapper
-        title="Clients"
-      >
+      <Wrapper title="Clients" elements={this.searchBar()}>
         <Card className="full-card">
           <div className="tblbox">
             <div className="tblhdr">Clients</div>

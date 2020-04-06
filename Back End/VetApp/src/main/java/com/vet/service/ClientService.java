@@ -8,22 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vet.dao.ClientDao;
-import com.vet.dao.PetDao;
 import com.vet.model.Client;
-// import com.vet.model.Pet;
 
 @Service
 @Transactional
 public class ClientService {
 
 	private ClientDao cd;
-	private PetDao pd;
 
 	@Autowired
-	public ClientService(ClientDao cd, PetDao pd) {
+	public ClientService(ClientDao cd) {
 		super();
 		this.cd = cd;
-		this.pd = pd;
 	}
 
 	public List<Client> findAll() {
